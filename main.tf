@@ -72,3 +72,11 @@ resource "aws_dynamodb_table" "dynamodb-homolog" {
       type = "S"
     }
 }
+
+resource "aws_s3_bucket" "bucket-dev" {
+    bucket = "bucket-dev"
+    acl = "private"
+    tags = {
+        Name = "bucket-dev"
+    }
+}
