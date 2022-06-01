@@ -20,19 +20,6 @@ resource "aws_instance" "dev" {
     vpc_security_group_ids = ["${aws_security_group.acesso-ssh.id}"]
 }
 
-resource "aws_instance" "dev4" {
-    ami = "ami-09d56f8956ab235b3"
-    instance_type = var.instance_type
-    key_name = var.key_name
-    tags = {
-        Name = "dev4"
-    }
-    vpc_security_group_ids = ["${aws_security_group.acesso-ssh.id}"]
-    depends_on = [
-      aws_s3_bucket.dev4
-    ]
-}
-
 resource "aws_instance" "dev5" {
     ami = var.amis["us-east-1"]
     instance_type = var.instance_type
@@ -66,15 +53,6 @@ resource "aws_instance" "dev7" {
         Name = "dev7"
     }
     vpc_security_group_ids = ["${aws_security_group.acesso-ssh-us-east-2.id}"]
-}
-
-resource "aws_s3_bucket" "dev4" {
-    bucket = "development-dev4"
-    acl = "private"
-
-    tags = {
-        Name = "development-dev4"
-    }
 }
 
 resource "aws_dynamodb_table" "dynamodb-homolog" {
